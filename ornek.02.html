@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VUE Dersleri</title>
+    <script src="//unpkg.com/vue@3"></script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicons/site.webmanifest" />
+    <style>
+      .siyahYazi {
+        color: black;
+      }
+      .beyazYazi {
+        color: white;
+      }
+      .siyahZemin {
+        background-color: black;
+      }
+      .kirmiziZemin {
+        background-color: red;
+      }
+      .beyazTema {
+        background-color: white;
+        color: black;
+      }
+      .kirmiziTema {
+        background-color: red;
+        color: white;
+      }
+      .siyahTema {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <projeBlogu id="app">
+      <p v-show="iller.length > 0">
+        <b>İL SEÇİNİZ:</b>
+        <select v-model="seciliIL" @change="IlSecildi">
+          <option value="0">** Seçiniz **</option>
+          <option v-for="il in iller" :value="il.IL_ID">{{il.IL_ADI}}</option>
+        </select>
+      </p>
+
+      <p v-show="ilceler.length > 0">
+        <b>İLÇE SEÇİNİZ:</b>
+        <select v-model="seciliILCE">
+          <option value="0">** Seçiniz **</option>
+          <option v-for="ilce in ilceler">{{ilce.ILCE_ADI}}</option>
+        </select>
+      </p>
+    </projeBlogu>
+  </body>
+</html>
+
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        iller: [],
+        ilceler: [],
+        seciliIL: 0,
+        seciliILCE: 0,
+      };
+    },
+    methods: {
+      IlSecildi() {
+        console.log("IlSecildi");
+        this.seciliILCE = 0;
+        this.getDataIlceler();
+      },
+
+      async getDataIlceler() {
+        try {
+          let response = await fetch(
+            "http://localhost/vue_dersleri/api.php?method=get.ilceler&il_id=" +
+              this.seciliIL
+          );
+          let data = await response.json();
+          this.ilceler = data; // DB'den gelen veriyi alalım...
+          // console.log("getDataIller BİTTİ");
+        } catch (error) {
+          console.error("getDataIller hatası:", error);
+          return null;
+        }
+      },
+
+      async getDataIller() {
+        //console.log("getDataIller BAŞLADI");
+        try {
+          let response = await fetch(
+            "http://localhost/vue_dersleri/api.php?method=get.iller"
+          );
+          let data = await response.json();
+          this.iller = data; // DB'den gelen veriyi alalım...
+          console.log("getDataIller BİTTİ");
+        } catch (error) {
+          console.error("getDataIller hatası:", error);
+          return null;
+        }
+      },
+    },
+    mounted() {
+      console.log("mounted BAŞLADI");
+      this.getDataIller().then(() => {
+        console.log("mounted BİTTİ");
+      });
+    },
+
+    created() {},
+  }).mount("#app");
+</script>

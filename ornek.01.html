@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VUE Dersleri</title>
+    <script src="//unpkg.com/vue@3"></script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicons/site.webmanifest" />
+    <style>
+      .siyahYazi {
+        color: black;
+      }
+      .beyazYazi {
+        color: white;
+      }
+      .siyahZemin {
+        background-color: black;
+      }
+      .kirmiziZemin {
+        background-color: red;
+      }
+      .beyazTema {
+        background-color: white;
+        color: black;
+      }
+      .kirmiziTema {
+        background-color: red;
+        color: white;
+      }
+      .siyahTema {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1
+        :class="{ kirmiziTema: tema === 'Kırmızı', beyazTema: tema === 'Beyaz' }"
+        @click="gorunum = !gorunum; tema = tema === 'Kırmızı' ? 'Beyaz' : 'Kırmızı'"
+      >
+        Tıklamaya Duyarlı Başlık
+      </h1>
+      <div>
+        <input type="text" v-model="selam" />
+        <p>
+          Girilen ifade: {{selam}}<br />
+          Girilen değer toplam {{selam.length}} karakterdir.<br />
+          Büyük harf karşılığı {{selam.toUpperCase()}}
+        </p>
+      </div>
+
+      <div>
+        <input type="text" :value="selam1" />
+        <p>Girilen değer: {{selam1}}</p>
+      </div>
+      <div v-if="gorunum">
+        <h1>Lorem</h1>
+        <p>
+          lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum
+          dolor sit amet consectetur adipisicing elit.
+        </p>
+        <p>
+          lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum
+          dolor sit amet consectetur adipisicing elit.
+        </p>
+        <p>
+          lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum
+          dolor sit amet consectetur adipisicing elit.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        selam: "Merhaba",
+        selam1: "Osman",
+        gorunum: true,
+        tema: "Kırmızı",
+      };
+    },
+    methods: {},
+    mounted() {},
+    created() {},
+  }).mount("#app");
+</script>
