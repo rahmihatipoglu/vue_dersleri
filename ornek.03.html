@@ -13,7 +13,7 @@
         <b>İL SEÇİNİZ:</b>
         <select v-model="secili_IL" @change="IlSecildi">
           <option value="0">** Seçiniz **</option>
-          <option v-for="il in iller" :value="il" :key="il.id">
+          <option v-for="il in iller" :value="il.id" :key="il.id">
             {{il.il_adi}}
           </option>
         </select>
@@ -23,7 +23,7 @@
         <b>İLÇE SEÇİNİZ:</b>
         <select v-model="secili_Ilce" @change="IlceSecildi">
           <option value="0">** Seçiniz **</option>
-          <option v-for="ilce in ilceler" :value="ilce" :key="ilce.id">
+          <option v-for="ilce in ilceler" :value="ilce.id" :key="ilce.id">
             {{ilce.ilce_adi}}
           </option>
         </select>
@@ -33,7 +33,7 @@
         <b>SEMT SEÇİNİZ:</b>
         <select v-model="secili_Semt" @change="SemtSecildi">
           <option value="0">** Seçiniz **</option>
-          <option v-for="semt in semtler" :value="semt" :key="semt.id">
+          <option v-for="semt in semtler" :value="semt.id" :key="semt.id">
             {{semt.semt_adi}}
           </option>
         </select>
@@ -45,23 +45,13 @@
           <option value="0">** Seçiniz **</option>
           <option
             v-for="mahalle in mahalleler"
-            :value="mahalle"
+            :value="mahalle.id"
             :key="mahalle.id"
           >
             {{mahalle.mahalle_adi}}
           </option>
         </select>
       </p>
-      <hr />
-      <h3>Seçili Değerler:</h3>
-      <b>İL:</b>
-      <pre>{{secili_IL}}</pre>
-      <b>İLÇE:</b>
-      <pre>{{secili_Ilce}}</pre>
-      <b>SEMT:</b>
-      <pre>{{secili_Semt}}</pre>
-      <b>MAHALLE:</b>
-      <pre>{{secili_MAHALLE}}</pre>
     </projeBlogu>
   </body>
 </html>
@@ -103,7 +93,7 @@
       getDataMahalleler() {
         fetch(
           "http://localhost/vue_dersleri/api.php?method=get.mahalleler&id=" +
-            this.secili_Semt.id
+            this.secili_Semt
         )
           .then((response) => response.json())
           .then((data) => (this.mahalleler = data)); // DB'den gelen veriyi alalım...
@@ -112,7 +102,7 @@
       getDataSemtler() {
         fetch(
           "http://localhost/vue_dersleri/api.php?method=get.semtler&id=" +
-            this.secili_Ilce.id
+            this.secili_Ilce
         )
           .then((response) => response.json())
           .then((data) => (this.semtler = data)); // DB'den gelen veriyi alalım...
@@ -121,7 +111,7 @@
       getDataIlceler() {
         fetch(
           "http://localhost/vue_dersleri/api.php?method=get.ilceler&id=" +
-            this.secili_IL.id
+            this.secili_IL
         )
           .then((response) => response.json())
           .then((data) => (this.ilceler = data)); // DB'den gelen veriyi alalım...
