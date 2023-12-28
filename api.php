@@ -12,27 +12,27 @@ if (!isset($_GET['method'])) {
 
 switch ($_GET['method']) {
   case 'get.iller':
-    $SQL = "SELECT * FROM il ORDER BY IL_ADI";
+    $SQL = "SELECT * FROM iller ORDER BY il_adi";
     $SORGU = $DB->prepare($SQL);
     break;
 
   case 'get.ilceler':
     $ID = ($_GET['id']) ?? 0;
-    $SQL = "SELECT * FROM ilce WHERE IL_ID = :id ORDER BY ILCE_ADI";
+    $SQL = "SELECT * FROM ilceler WHERE il_id = :id ORDER BY ilce_adi";
     $SORGU = $DB->prepare($SQL);
     $SORGU->bindParam(':id', $ID);
     break;
 
   case 'get.semtler':
     $ID = ($_GET['id']) ?? 0;
-    $SQL = "SELECT * FROM semt WHERE ILCE_ID = :id ORDER BY SEMT_ADI";
+    $SQL = "SELECT * FROM semtler WHERE ilce_id = :id ORDER BY semt_adi";
     $SORGU = $DB->prepare($SQL);
     $SORGU->bindParam(':id', $ID);
     break;
 
   case 'get.mahalleler':
     $ID = ($_GET['id']) ?? 0;
-    $SQL = "SELECT * FROM mahalle_koy WHERE SEMT_ID = :id ORDER BY MAHALLE_ADI";
+    $SQL = "SELECT * FROM mahalleler WHERE semt_id = :id ORDER BY mahalle_adi";
     $SORGU = $DB->prepare($SQL);
     $SORGU->bindParam(':id', $ID);
     break;

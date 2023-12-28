@@ -1,6 +1,6 @@
 # Vue Dersleri
 
-- il - ilçe - mahalle veritabanı için SQL dosyası: https://github.com/nuriakman/Ornek_Veri_Setleri/blob/master/il_ilce_semt_mah_pk_utf8.sql
+- il - ilçe - mahalle veritabanı için SQL dosyası: https://github.com/semihferik/il-ilce-semt-mahalle/tree/master/Aktarilmis%20Sql%20Dosyalari
 
 - npx serve ile default olarak çalışan dosyanın adı `index.html` dir.
 - npx serve yerine vscoe içindeki "Go Live" eklentisi de aynı işi yapıyor.

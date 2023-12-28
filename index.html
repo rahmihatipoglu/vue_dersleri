@@ -13,7 +13,7 @@
         <b>İL SEÇİNİZ:</b>
         <select v-model="seciliIL" @change="IlSecildi">
           <option value="0">** Seçiniz **</option>
-          <option v-for="il in iller" :value="il.IL_ID">{{il.IL_ADI}}</option>
+          <option v-for="il in iller" :value="il.id">{{il.il_adi}}</option>
         </select>
       </p>
 
@@ -21,8 +21,8 @@
         <b>İLÇE SEÇİNİZ:</b>
         <select v-model="seciliILCE" @change="IlceSecildi">
           <option value="0">** Seçiniz **</option>
-          <option v-for="ilce in ilceler" :value="ilce.ILCE_ID">
-            {{ilce.ILCE_ADI}} -{{ilce.ILCE_ID}}
+          <option v-for="ilce in ilceler" :value="ilce.id">
+            {{ilce.ilce_adi}}
           </option>
         </select>
       </p>
@@ -31,8 +31,8 @@
         <b>SEMT SEÇİNİZ:</b>
         <select v-model="seciliSEMT" @change="SemtSecildi">
           <option value="0">** Seçiniz **</option>
-          <option v-for="semt in semtler" :value="semt.SEMT_ID">
-            {{semt.SEMT_ADI}} - {{semt.SEMT_ID}}
+          <option v-for="semt in semtler" :value="semt.id">
+            {{semt.semt_adi}}
           </option>
         </select>
       </p>
@@ -41,11 +41,15 @@
         <b>MAHALLE SEÇİNİZ:</b>
         <select v-model="seciliMAHALLE" @change="MahalleSecildi">
           <option value="0">** Seçiniz **</option>
-          <option v-for="mahalle in mahalleler" :value="mahalle.MAH_ID">
-            {{mahalle.MAHALLE_ADI}}
+          <option v-for="mahalle in mahalleler" :value="mahalle.id">
+            {{mahalle.mahalle_adi}}
           </option>
         </select>
       </p>
+      İL: {{seciliIL}}<br />
+      İLÇE: {{seciliILCE}}<br />
+      SEMT: {{seciliSEMT}}<br />
+      MAHALLE: {{seciliMAHALLE}}<br />
     </projeBlogu>
   </body>
 </html>

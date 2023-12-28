@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username   = "root";
 $password   = "root";
-$dbname     = "VUE_DERSLERI";
+$dbname     = "vue_dersleri";
 
 try {
   $DB = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
